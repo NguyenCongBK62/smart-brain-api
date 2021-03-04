@@ -13,7 +13,7 @@ const image = require('./controllers/image');
 const db = knex({
     client: 'pg',
     connection: {
-        host: '127.0.0.1',
+        host: 'postgresql-angular-91928',
         user: 'nguyencong',
         password: '',
         database: 'smart-brain'
@@ -26,18 +26,18 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.get('/', (req, res) => {
-    res.send("ok")
+    res.send(database.users)
 })
 
-// app.post('/signin', (req, res) => { signin.handleSignin(req, res, db, bcrypt) });
+app.post('/signin', (req, res) => { signin.handleSignin(req, res, db, bcrypt) });
 
-// app.post('/register', (req, res) => { register.handleRegister(req, res, db, bcrypt) });
+app.post('/register', (req, res) => { register.handleRegister(req, res, db, bcrypt) });
 
-// app.get('/profile/:id', (req, res) => { profile.handleProfileGet(req, req, db) });
+app.get('/profile/:id', (req, res) => { profile.handleProfileGet(req, req, db) });
 
-// app.put('/image', (req, res) => { image.handleImage(req, res, db) });
+app.put('/image', (req, res) => { image.handleImage(req, res, db) });
 
-// app.put('/imageurl', (req, res) => { image.handleApiCall(req, res) });
+app.put('/imageurl', (req, res) => { image.handleApiCall(req, res) });
 
 
 
